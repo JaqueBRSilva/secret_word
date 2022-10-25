@@ -1,5 +1,5 @@
 import React from 'react'
-import './StartScreen.css'
+import './style.css'
 
 const StartScreen = () => {
    return (
