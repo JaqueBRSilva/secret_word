@@ -14,6 +14,8 @@ const stages = [
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
   const [words] = useState(wordsList);
+  const [pickedWord, setPickedWord] = useState("");
+  const [pickedCategory, setPickedCategory] = useState("");
   const [letters, setLetters] = useState([]);
 
   const pickWordAndCategory = () => {
