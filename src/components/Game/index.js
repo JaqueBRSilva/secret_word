@@ -1,12 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import './style.css';
 
-const Game = ({ verifyLetter, pickedWord, pickedCategory, letters, guessedLetters, wrongLetters, guesses, score }) => {
-
+const Game = ({
+   verifyLetter,
+   pickedCategory,
+   pickedWord,
+   letters,
+   guessedLetters,
+   wrongLetters,
+   guesses,
+   score,
+}) => {
    const [letter, setLetter] = useState("");
-   const letterInputRef = useRef(null)
+   const letterInputRef = useRef(null);
 
-   const handleSubmit = () => {
+   const handleSubmit = (e) => {
       e.preventDefault();
 
       verifyLetter(letter);
@@ -22,7 +30,8 @@ const Game = ({ verifyLetter, pickedWord, pickedCategory, letters, guessedLetter
             <span>Pontuação: {score}</span>
          </p>
          <h1>Adivinhe a palavra:</h1>
-         <h3 className="tip">Dica sobre a palavra:
+         <h3 className="tip">
+            Dica sobre a palavra:
             <span> {pickedCategory} </span>
          </h3>
          <p>Você ainda tem {guesses} tentativa(s).</p>
