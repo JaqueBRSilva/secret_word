@@ -99,10 +99,47 @@ function App() {
     }
   };
 
-  /** Restart the game */
-  const retryGame = () => {
+  console.log(wrongLetters);
+
+  // restart the game
+  const retry = () => {
+    setScore(0);
+    setGuesses(3);
     setGameStage(stages[0].name);
-  }
+  };
+
+  // clear letters state
+  const clearLettersStates = () => {
+    setGuessedLetters([]);
+    setWrongLetters([]);
+  };
+
+  // check if guesses ended
+  useEffect(() => {
+    if (guesses === 0) {
+      // game over and reset all states
+      clearLettersStates();
+
+      setGameStage(stages[2].name);
+    }
+  }, [guesses]);
+
+  // check win condition
+  useEffect(() => {
+    const uniqueLetters = [...new Set(letters)];
+
+    console.log(uniqueLetters);
+    console.log(guessedLetters);
+
+    // win condition
+    if (guessedLetters.length === uniqueLetters.length) {
+      // add score
+      setScore((actualScore) => (actualScore += 100));
+
+      // restart game with new word
+      startGame();
+    }
+  }, [guessedLetters, letters, startGame]);
 
   return (
     <div className="App">
